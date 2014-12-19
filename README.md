@@ -95,6 +95,14 @@ By default, dnsmasq is stopped with the command `service dnsmasq stop`, and star
 
 By default, `internal-dns` scans `/var/lib/misc/dnsmasq.leases` and removes any existing lease for a mac address that has just been added or removed. This is the right location at least in Ubuntu Linux. However, you can set the `leases` option to `false` to completely block this behavior, or set it to a filename if your copy of `dnsmasq` keeps leases in a different place.
 
+## Other commands
+
+You can rebuild dnsmasq.conf without making any changes, which is useful if you edited `/etc/internal-dns.js`:
+
+```
+internal-dns refresh
+```
+
 ## Credits
 
 `internal-dns` was created to facilitate our work at [P'unk Avenue](http://punkave.com).
