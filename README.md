@@ -1,3 +1,15 @@
+## Purpose
+
+Everyone in your office tests out sites on their own computer.
+
+Maybe you've tried visiting a site on a coworker's computer, by IP address.
+
+Maybe you've even figured out how to use DHCP client IDs to give them a hostname on the local network. But that doesn't help you reach the right virtual host on their computer.
+
+What if everyone could have their own subdomain, so that `jane.punk`, `site1.jane.punk` and `site2.jane.punk` all resolved to the same laptop?
+
+That's what `internal-dns` gives you.
+
 ## Install
 
 **Step One:** install the `dnsmasq` service on your Linux server.
