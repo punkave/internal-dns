@@ -6,7 +6,7 @@ var resolve = require('path').resolve;
 
 var settingsFile = argv.c ? resolve(process.cwd(), argv.c) : '/etc/internal-dns.js';
 var settings = require(settingsFile);
-var dataFile = settings.json || '/var/lib/internal-dns.json';
+var dataFile = settings.json || '/var/lib/misc/internal-dns.json';
 var data = require('prettiest')({ json: dataFile });
 
 var command = argv._[0];
@@ -35,6 +35,17 @@ function add() {
   if (argv._.length !== 3) {
     usage();
   }
+
+  if (!shortname.match(/[\w\-]+/)) {
+    console.error('shortname must contain only letters, digits and dashes');
+    usage();
+  }
+
+  if (!mac.match(/[0-9a-f\:]+/)) {
+    console.error('mac addresses look like this: c8:bc:c8:92:cb:aa');
+    usage();
+  }
+
   var pushed = false;
   var methods = [ sameShortname, sameMac, newKid ];
 

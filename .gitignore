@@ -5,3 +5,4 @@ tests/test.json
 tests/test.json.lock
 tests/test.conf
 tests/test-dnsmasq.conf
+tests/test-leases
