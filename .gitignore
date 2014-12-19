@@ -1,0 +1,7 @@
+npm-debug.log
+*.DS_Store
+node_modules
+tests/test.json
+tests/test.json.lock
+tests/test.conf
+tests/test-dnsmasq.conf
