@@ -18,6 +18,8 @@ if (command === 'add') {
   add();
 } else if (command === 'remove') {
   remove();
+} else if (command === 'refresh') {
+  refresh();
 } else {
   usage();
 }
@@ -26,6 +28,9 @@ function usage() {
   console.error('Usage:\n');
   console.error('internal-dns add shortname mac-address');
   console.error('internal-dns remove shortname');
+  console.error('internal-dns refresh\n');
+  console.error('"refresh" is useful if you edited your config file.');
+  console.error('You do not have to use it at other times.');
   process.exit(1);
 }
 
@@ -125,6 +130,10 @@ function remove() {
     return;
   }
   writeAndRestart({ forgetLease: mac });
+}
+
+function refresh() {
+  writeAndRestart({});
 }
 
 function writeAndRestart(options) {
