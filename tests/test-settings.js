@@ -1,7 +1,11 @@
 module.exports = {
-  range: {
+  staticRange: {
     low: '10.1.1.1',
-    high: '10.1.1.255'
+    high: '10.1.1.100'
+  },
+  dynamicRange: {
+    low: '10.1.1.101',
+    high: '10.1.1.254'
   },
   leases: 'test-leases',
   start: ':',

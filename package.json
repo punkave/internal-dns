@@ -1,6 +1,6 @@
 {
   "name": "internal-dns",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Manage internal DNS entries so that coworkers can test sites on each other's computers. Based on dnsmasq.",
   "main": "app.js",
   "scripts": {

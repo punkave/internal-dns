@@ -38,11 +38,21 @@ module.exports = {
     'domain-needed',
     'bogus-priv'
   ],
-  // Specify the range of IP addresses you want to assign.
-  // Supports only IPv4 so far
-  range: {
-    low: '10.1.10.100',
-    high: '10.1.10.199'
+  // Specify the range of IP addresses you want to assign
+  // *statically* to individual coworkers, granting them domains
+  //
+  // Supports only ipv4 so far
+  staticRange: {
+    low: '10.1.10.1',
+    high: '10.1.10.100'
+  },
+  // Specify the range of IP addresses you want to assign
+  // *dynamically* to everyone else
+  //
+  // Supports only ipv4 so far
+  dynamicRange: {
+    low: '10.1.10.101',
+    high: '10.1.10.254'
   },
 
   // This way "jane.mycompany" or "site.jane.mycompany" both
@@ -79,7 +89,7 @@ You can remove an entry by mac address as well, just use the mac address instead
 
 `dnsmasq` is now your DHCP and forwarding DNS server, handing out IP addresses to computers based on their hardware address (mac address) and answering questions about local names like `site.jane.mycompany` directly.
 
-You will want to try renewing your DHCP release manually to see if you are assigned an IP in the range you configured.
+You will want to try renewing your DHCP release manually to see if you are assigned an IP in the `staticRange` you configured.
 
 After that, if you added your computer with `internal-dns add jane mac-address`, you should be able to visit `site.jane.mycompany` and talk to the website you're testing on your computer.
 
@@ -106,4 +116,8 @@ internal-dns refresh
 ## Credits
 
 `internal-dns` was created to facilitate our work at [P'unk Avenue](http://punkave.com).
+
+## Changelog
+
+0.2.0: oops, we need separate `staticRange` and `dynamicRange` options. It turns out `dnsmasq` is not clever enough to avoid static addresses when handing out dynamic addresses. This lead to IP address conflicts and the occasional machine being locked out of the network entirely. The solution is to configure non-overlapping `staticRange` and `dynamicRange` options with 0.2.0. You may need to remove your existing dnsmasq leases file as well as mopping up addresses in `/var/lib/misc/internal-dns.json` that fall outside your new `staticRange`, if any.
 

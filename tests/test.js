@@ -33,5 +33,12 @@ if (JSON.stringify(data) !== JSON.stringify({
   console.error(data);
   process.exit(1);
 }
+
+var data = fs.readFileSync('test-dnsmasq.conf', 'utf8');
+if (data.indexOf('dhcp-range=10.1.1.101,10.1.1.254') === -1) {
+  console.error('Test failed, dhcp-range does not match dynamicRange\n');
+  process.exit(1);
+}
+
 console.log('All tests passing.');
 
